@@ -1,0 +1,19 @@
+.header {
+    background-color: var(--header-background-color);
+    .div_header {
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%; //1400px no video
+        max-width: calc(100% - 30px);
+        margin: 0 auto;
+
+        
+        .div_logo{
+            > img {
+                width: 120px;
+            }
+        }
+    }
+}
