@@ -1,93 +1,93 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
-import css from "./card.module.scss";
-import api from "../../../api/apiRest";
+import css from './card.module.scss'
+import api from '../../../api/apiRest'
 
-export default function Card({ card }) {
-  const [itemPokemon, setItemPokemon] = useState({});
-  const [speciePokemon, setSpeciePokemon] = useState({});
-  const [evolutions, setEvolutions] = useState([]);
+export default function Card ({ card }) {
+  const [itemPokemon, setItemPokemon] = useState({})
+  const [speciePokemon, setSpeciePokemon] = useState({})
+  const [evolutions, setEvolutions] = useState([])
 
   useEffect(() => {
     const dataPokemon = async () => {
-      const url = await axios.get(`${card.url}`);
+      const url = await axios.get(`${card.url}`)
 
-      setItemPokemon(url.data);
-    };
+      setItemPokemon(url.data)
+    }
 
-    dataPokemon();
-  }, [card]);
+    dataPokemon()
+  }, [card])
 
   useEffect(() => {
     const dataSpecie = async () => {
       if (itemPokemon?.id) {
-        const response = await api.get(`/pokemon-species/${itemPokemon?.id}`);
+        const response = await api.get(`/pokemon-species/${itemPokemon?.id}`)
 
-        setSpeciePokemon(response?.data);
+        setSpeciePokemon(response?.data)
       }
-    };
+    }
 
-    dataSpecie();
-  }, [itemPokemon]);
+    dataSpecie()
+  }, [itemPokemon])
 
   useEffect(() => {
-    const evolutionChain_URL = speciePokemon.evolution_chain?.url;
+    const evolutionChainUrl = speciePokemon.evolution_chain?.url
 
-    if (evolutionChain_URL) {
+    if (evolutionChainUrl) {
       const dataEvolutionChain = async () => {
-        const response = await axios.get(evolutionChain_URL);
+        const response = await axios.get(evolutionChainUrl)
 
-        const arrayEvolution = [];
+        const arrayEvolution = []
 
         const getEvolutionInfo = async (pokemonName) => {
-          const getData = await api.get(`pokemon/${pokemonName}`);
+          const getData = await api.get(`pokemon/${pokemonName}`)
 
           arrayEvolution.push({
             id: getData.data?.id,
             name: getData.data?.name,
-            img: getData.data.sprites?.other["official-artwork"].front_default,
-          });
-        };
+            img: getData.data.sprites?.other['official-artwork'].front_default
+          })
+        }
 
-        getEvolutionInfo(response.data.chain?.species.name);
+        getEvolutionInfo(response.data.chain?.species.name)
 
-        const evolutionChain = response.data.chain?.evolves_to;
+        const evolutionChain = response.data.chain?.evolves_to
 
         if (!evolutionChain.length) {
-          console.log("This Pokemon dont have evolutions");
-          return;
+          console.log('This Pokemon dont have evolutions')
+          return
         }
 
         evolutionChain.forEach((evolution) => {
-          getEvolutionInfo(evolution?.species.name);
+          getEvolutionInfo(evolution?.species.name)
 
-          const secondEvolution = evolution?.evolves_to;
+          const secondEvolution = evolution?.evolves_to
 
           if (!secondEvolution.length) {
-            console.log("the first evolution dont have more evolutions");
-            return;
+            console.log('the first evolution dont have more evolutions')
+            return
           }
 
           secondEvolution.forEach((evolution) => {
-            getEvolutionInfo(evolution?.species.name);
-          });
-        });
+            getEvolutionInfo(evolution?.species.name)
+          })
+        })
 
-        setEvolutions(arrayEvolution);
-      };
+        setEvolutions(arrayEvolution)
+      }
 
-      dataEvolutionChain();
+      dataEvolutionChain()
     }
-  }, [speciePokemon]);
+  }, [speciePokemon])
 
-  let pokemonId = itemPokemon?.id?.toString();
-  pokemonId = pokemonId?.padStart(4, "0");
+  let pokemonId = itemPokemon?.id?.toString()
+  pokemonId = pokemonId?.padStart(4, '0')
 
   return (
     <div className={css.card}>
       <img
-        src={itemPokemon.sprites?.other["official-artwork"].front_default}
+        src={itemPokemon.sprites?.other['official-artwork'].front_default}
         alt={card.name}
         className={css.img_pokemon}
       />
@@ -107,7 +107,7 @@ export default function Card({ card }) {
                 <progress value={sta.base_stat} max={110}></progress>
                 <span className={css.number}> {sta.base_stat} </span>
               </h6>
-            );
+            )
           })}
         </div>
 
@@ -120,12 +120,12 @@ export default function Card({ card }) {
               >
                 {type.type.name}
               </h6>
-            );
+            )
           })}
         </div>
 
         <div>{evolutions.name?.ma}</div>
       </div>
     </div>
-  );
+  )
 }

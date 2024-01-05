@@ -1,16 +1,13 @@
-import LayoutHome from "./pages/home/layout/LayoutHome"
+import React from 'react'
+import LayoutHome from './pages/home/layout/LayoutHome'
 
-function App() {
-
+function App () {
   return (
-  
     <div>
-
       <LayoutHome />
-
     </div>
 
   )
 }
 
-export default App;
+export default App
