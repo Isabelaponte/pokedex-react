@@ -1,45 +1,77 @@
 import axios from "axios";
-import { URL_POKEMON, URL_SPECIES } from "../../../api/apiRest";
-
 import { useState, useEffect } from "react";
 
 import css from "./card.module.scss";
+import api from "../../../api/apiRest";
 
 export default function Card({ card }) {
   const [itemPokemon, setItemPokemon] = useState({});
   const [speciePokemon, setSpeciePokemon] = useState({});
-
+  const [evolutions, setEvolutions] = useState([]);
 
   useEffect(() => {
     const dataPokemon = async () => {
-      const api = await axios.get(`${URL_POKEMON}/${card.name}`);
-
-      setItemPokemon(api.data);
+      const url = await axios.get(`${card.url}`);
+      setItemPokemon(url.data);
     };
 
     dataPokemon();
   }, [card]);
 
-
   useEffect(() => {
     const dataSpecie = async () => {
-      const id_URL = card.url.split("/");
+      if (itemPokemon?.id) {
+        const response = await api.get(`/pokemon-species/${itemPokemon?.id}`);
 
-      const api = await axios.get(`${URL_SPECIES}/${id_URL[6]}`);
-
-      setSpeciePokemon({
-        url_specie: api?.data?.evolution_chain,
-        data: api.data
-      });
+        setSpeciePokemon(response?.data);
+      }
     };
 
     dataSpecie();
-  }, [card]);
+  }, [itemPokemon]);
 
+  useEffect(() => {
+    const evolutionChain_URL = speciePokemon.evolution_chain?.url;
+
+    if (evolutionChain_URL) {
+      const dataEvolutionChain = async () => {
+        const response = await axios.get(evolutionChain_URL);
+
+        const arrayEvolution = [];
+
+        arrayEvolution.push(response.data.chain?.species);
+
+        const evolutionChain = response.data.chain?.evolves_to;
+
+        if (!evolutionChain.length) {
+          console.log("This Pokemon dont have evolutions");
+          return;
+        }
+
+        evolutionChain.forEach((evolution) => {
+          arrayEvolution.push(evolution?.species);
+
+          const secondEvolution = evolution?.evolves_to;
+
+          if (!secondEvolution.length) {
+            console.log("the first evolution dont have more evolutions");
+            return;
+          }
+
+          secondEvolution.forEach((evolution) => {
+            arrayEvolution.push(evolution?.species);
+          });
+        });
+
+        setEvolutions(arrayEvolution);
+      };
+
+      dataEvolutionChain();
+    }
+  }, [speciePokemon]);
 
   let pokemonId = itemPokemon?.id?.toString();
-  pokemonId = pokemonId?.padStart(4, '0');
-
+  pokemonId = pokemonId?.padStart(4, "0");
 
   return (
     <div className={css.card}>
@@ -49,13 +81,12 @@ export default function Card({ card }) {
         className={css.img_pokemon}
       />
 
-      <div className={`bg-${speciePokemon?.data?.color?.name} ${css.sub_card}`}>
-
+      <div className={`bg-${speciePokemon.color?.name} ${css.sub_card}`}>
         <strong className={css.id_card}>{pokemonId}</strong>
         <strong className={css.name_card}>{itemPokemon.name}</strong>
         <h4 className={css.height}>Height: {itemPokemon.height}0 cm</h4>
         <h4 className={css.weight}>Weight: {itemPokemon.weight} kg</h4>
-        <h4 className={css.habitat}>Habitat: {speciePokemon?.data?.habitat?.name}</h4>
+        <h4 className={css.habitat}>Habitat: {speciePokemon.habitat?.name}</h4>
 
         <div className={css.div_stats}>
           {itemPokemon?.stats?.map((sta, index) => {
