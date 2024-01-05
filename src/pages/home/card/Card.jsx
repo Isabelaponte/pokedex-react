@@ -115,8 +115,6 @@ export default function Card ({ card }) {
         <div className={css.div_evolution}>
           {
           evolutions.map((evolution, index) => {
-            console.log(evolution)
-
             return (
               <div key={index} className={css.item_evolution}>
                 <img

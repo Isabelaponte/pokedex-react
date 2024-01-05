@@ -1,9 +1,10 @@
 import React from 'react'
+import * as FaIcons from 'react-icons/fa'
 import css from './header.module.scss'
 
 import logo from '../../../assets/images/pokemon.png'
 
-export default function Header () {
+export default function Header ({ getSearch }) {
   return (
         <nav className={css.header}>
             <div className={css.div_header}>
@@ -11,7 +12,10 @@ export default function Header () {
                     <img src={logo} alt="Pokemon Logo" />
                 </div>
                 <div className={css.div_search}>
-                    <input type="search" />
+                    <div>
+                        <FaIcons.FaSearch />
+                    </div>
+                    <input type="search" onChange={(event) => getSearch(event.target.value)} />
                 </div>
             </div>
         </nav>
