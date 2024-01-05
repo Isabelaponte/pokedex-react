@@ -12,6 +12,7 @@ export default function Card({ card }) {
   useEffect(() => {
     const dataPokemon = async () => {
       const url = await axios.get(`${card.url}`);
+
       setItemPokemon(url.data);
     };
 
@@ -39,7 +40,17 @@ export default function Card({ card }) {
 
         const arrayEvolution = [];
 
-        arrayEvolution.push(response.data.chain?.species);
+        const getEvolutionInfo = async (pokemonName) => {
+          const getData = await api.get(`pokemon/${pokemonName}`);
+
+          arrayEvolution.push({
+            id: getData.data?.id,
+            name: getData.data?.name,
+            img: getData.data.sprites?.other["official-artwork"].front_default,
+          });
+        };
+
+        getEvolutionInfo(response.data.chain?.species.name);
 
         const evolutionChain = response.data.chain?.evolves_to;
 
@@ -49,7 +60,7 @@ export default function Card({ card }) {
         }
 
         evolutionChain.forEach((evolution) => {
-          arrayEvolution.push(evolution?.species);
+          getEvolutionInfo(evolution?.species.name);
 
           const secondEvolution = evolution?.evolves_to;
 
@@ -59,7 +70,7 @@ export default function Card({ card }) {
           }
 
           secondEvolution.forEach((evolution) => {
-            arrayEvolution.push(evolution?.species);
+            getEvolutionInfo(evolution?.species.name);
           });
         });
 
@@ -112,6 +123,8 @@ export default function Card({ card }) {
             );
           })}
         </div>
+
+        <div>{evolutions.name?.ma}</div>
       </div>
     </div>
   );
