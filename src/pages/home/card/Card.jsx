@@ -43,37 +43,25 @@ export default function Card ({ card }) {
         const getEvolutionInfo = async (pokemonName) => {
           const getData = await api.get(`pokemon/${pokemonName}`)
 
-          arrayEvolution.push({
+          return {
             id: getData.data?.id,
             name: getData.data?.name,
             img: getData.data.sprites?.other['official-artwork'].front_default
-          })
-        }
-
-        getEvolutionInfo(response.data.chain?.species.name)
-
-        const evolutionChain = response.data.chain?.evolves_to
-
-        if (!evolutionChain.length) {
-          console.log('This Pokemon dont have evolutions')
-          return
-        }
-
-        evolutionChain.forEach((evolution) => {
-          getEvolutionInfo(evolution?.species.name)
-
-          const secondEvolution = evolution?.evolves_to
-
-          if (!secondEvolution.length) {
-            console.log('the first evolution dont have more evolutions')
-            return
           }
+        }
 
-          secondEvolution.forEach((evolution) => {
-            getEvolutionInfo(evolution?.species.name)
-          })
-        })
+        const processEvolutionChain = async (evolutionChain) => {
+          for (const evolution of evolutionChain) {
+            const evolutionInfo = await getEvolutionInfo(evolution?.species.name)
+            arrayEvolution.push(evolutionInfo)
 
+            if (evolution.evolves_to.length) {
+              await processEvolutionChain(evolution.evolves_to)
+            }
+          }
+        }
+
+        await processEvolutionChain([response.data.chain])
         setEvolutions(arrayEvolution)
       }
 
@@ -123,6 +111,21 @@ export default function Card ({ card }) {
             )
           })}
         </div>
+
+        <div className={css.div_evolution}>
+          {evolutions.map((evolution, index) => {
+            return (
+              <div key={index} className={css.item_evolution}>
+                <img
+                  src={evolution?.img}
+                  alt={evolution?.name}
+                  className={css.img}
+                />
+                <h6>{evolution?.name}</h6>
+              </div>
+            )
+          })}
+      </div>
 
         <div>{evolutions.name?.ma}</div>
       </div>
