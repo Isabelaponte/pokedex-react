@@ -1,11 +1,10 @@
-// import React from "react";
-import css from "./header.module.scss";
+import React from 'react'
+import css from './header.module.scss'
 
-import logo from "../../../assets/images/pokemon.png";
+import logo from '../../../assets/images/pokemon.png'
 
-
-export default function Header(){
-    return(
+export default function Header () {
+  return (
         <nav className={css.header}>
             <div className={css.div_header}>
                 <div className={css.div_logo}>
@@ -16,5 +15,5 @@ export default function Header(){
                 </div>
             </div>
         </nav>
-    )
+  )
 }
