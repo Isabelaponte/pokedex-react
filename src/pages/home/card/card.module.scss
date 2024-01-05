@@ -122,4 +122,26 @@
             color: white;
         }
     }
+
+    .div_evolution{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .item_evolution{
+            > img {
+                width: 80px;
+
+                &:hover {
+                    transform: scale(1.4);
+                    transition-duration: 200ms;
+                    z-index: 56;
+                }
+            }
+
+            > h6 {
+                text-align: center;
+            }
+        }
+    }
 }
