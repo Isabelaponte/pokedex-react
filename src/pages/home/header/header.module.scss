@@ -1,51 +1,54 @@
 .header {
     background-color: var(--header-background-color);
+    
     .div_header {
         height: 64px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        width: 1400px;
-        max-width: calc(100% - 30px);
         margin: 0 auto;
 
         
-        .div_logo{
+        .logo{
             > img {
                 width: 120px;
             }
+            margin-left: 50px;
+            flex-grow: 1;
         }
 
-        .div_search {
-            width: 30%;
+        .login {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            border-radius: 10px;
-            overflow: hidden;
-            height: 30px;
+            justify-content: center;
+            height: 100%;
+            width: 197.5px;
             box-shadow: 1px 1px 4px #000;
+            gap: 5px;
+            cursor: pointer;
+
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 19% 100%, 0 64%);
+            background-color: #D4D4D4;
 
             @media screen and (max-width: 500px) {
                 width: 50%;
             }
 
             >div {
-                width: 20%;
-                background-color: #5865f2;
-                height: 30px;
-                display: grid;
-                place-items: center;
-                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                svg {
+                    width: 23px;
+                    height: 100%;
+                }
+
             }
 
-            >input {
-                width: 80%;
-                padding: 4px 10px;
-                height: 30px;
-                border: none;
-                outline: none;
+            > p {
+                font-size: 1.5rem;
             }
+
         }
     }
 }

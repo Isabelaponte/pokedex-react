@@ -4,18 +4,18 @@ import css from './header.module.scss'
 
 import logo from '../../../assets/images/pokemon.png'
 
-export default function Header ({ getSearch }) {
+export default function Header () {
   return (
         <nav className={css.header}>
             <div className={css.div_header}>
-                <div className={css.div_logo}>
+                <div className={css.logo}>
                     <img src={logo} alt="Pokemon Logo" />
                 </div>
-                <div className={css.div_search}>
-                    <div>
-                        <FaIcons.FaSearch />
+                <div className={css.login}>
+                    <div className={css.user_icon}>
+                        <FaIcons.FaUser />
                     </div>
-                    <input type="search" onChange={(event) => getSearch(event.target.value)} />
+                    <p>Login</p>
                 </div>
             </div>
         </nav>
