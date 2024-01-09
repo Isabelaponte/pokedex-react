@@ -47,38 +47,71 @@ export default function LayoutHome () {
   }
 
   return (
-    <div className={css.layout}>
+    <div>
       <Header getSearch={getSearch} />
 
-      <section className={css.section_pagination}>
-        <div className={css.div_pagination} >
-          <span className={css.left_arrow_pagination} onClick={() => {
-            if (page === 1) {
-              return
-            }
-            setPage(page - 1)
-          }} >
-            <FaIcons.FaAngleLeft />
-          </span>
-          <span className={css.pages} > {page} </span>
-          <span className={css.pages} > of </span>
-          <span className={css.pages} > {Math.round(globalPokemon?.length / 15)} </span>
-          <span className={css.right_arrow_pagination} onClick={() => {
-            if (page === 67) {
-              return
-            }
-            setPage(page + 1)
-          }} >
-            <FaIcons.FaAngleRight />
-          </span>
-        </div>
-      </section>
+      <main>
 
-      <div className={css.card_content}>
-        {filterPokemons.map((card, index) => {
-          return <Card key={index} card={card} />
-        })}
-      </div>
+        <header className={css.header_main}>
+          <h1>Pokédex</h1>
+
+          <div className={css.div_search_pokemons}>
+
+            <div className={css.div_input_search}>
+
+              <label htmlFor="search">Name or Number</label>
+
+              <form className={css.search}>
+                <input placeholder='Search...' type="text" name="search" id="search" />
+                <button type="submit">
+                  <FaIcons.FaSearch className={css.icon_search} />
+                </button>
+              </form>
+
+            </div>
+
+            <div className={css.div_select}>
+              <label htmlFor="select_type">Type</label>
+
+                <select name="select_type" id="select_type">
+                  <option value="Bug">Bug</option>
+                  <option value="Fire">Fire</option>
+                  <option value="AA">BuAAg</option>
+                </select>
+
+            </div>
+
+          </div>
+        </header>
+
+        <section className={css.section_pokemonList}>
+
+          <div className={css.div_selectSort}>
+            <label htmlFor="select_sortPokemon">Sort by</label>
+                <select name="select_sortPokemon" id="select_sortPokemon">
+                  <option value="lowestFirst" selected>Lowest Number (First)</option>
+                  <option value="highestFirst">Highest Number (First)</option>
+                  <option value="A-Z">A-Z</option>
+                  <option value="Z-A">Z-A</option>
+                </select>
+          </div>
+
+          <div className={css.card_content}>
+            {filterPokemons.map((card, index) => {
+              return <Card key={index} card={card} />
+            })}
+          </div>
+
+          <div className={css.load_pokemon}>
+            <button>
+              Load more Pokémon
+            </button>
+          </div>
+
+        </section>
+
+      </main>
+
     </div>
   )
 }
