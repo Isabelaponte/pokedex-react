@@ -6,6 +6,7 @@ import css from './layoutHome.module.scss'
 
 import Header from '../header/Header'
 import Card from '../card/Card'
+import Footer from '../Footer/Footer'
 
 export default function LayoutHome () {
   const [pokemon, setPokemon] = useState([])
@@ -112,6 +113,7 @@ export default function LayoutHome () {
 
       </main>
 
+      <Footer />
     </div>
   )
 }

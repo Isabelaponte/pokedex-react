@@ -1,0 +1,35 @@
+footer{
+    background-color: var(--footer-background-color);
+    
+    > div{   
+        margin: 0 auto;
+        max-width: 1500px;
+
+        display: flex;
+        flex-direction: column;
+        padding: 50px 70px;
+        color: #FFF;
+        font-size: 1.25rem;
+        gap: 40px;
+    
+        .div_medias {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+    
+        .div_usedApps {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+    
+        img {
+            width: 38px;
+            margin: 0 15px;
+            cursor: pointer;
+        }
+    }
+}
