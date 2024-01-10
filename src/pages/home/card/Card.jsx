@@ -52,7 +52,9 @@ export default function Card ({ card }) {
 
         const processEvolutionChain = async (evolutionChain) => {
           for (const evolution of evolutionChain) {
-            const evolutionInfo = await getEvolutionInfo(evolution?.species.name)
+            const evolutionInfo = await getEvolutionInfo(
+              evolution?.species.name
+            )
             arrayEvolution.push(evolutionInfo)
 
             if (evolution.evolves_to.length) {
@@ -74,62 +76,36 @@ export default function Card ({ card }) {
 
   return (
     <div className={css.card}>
-      <img
-        src={itemPokemon.sprites?.other['official-artwork'].front_default}
-        alt={card.name}
-        className={css.img_pokemon}
-      />
+      <header className={css.div_pokemonImage}>
+        <p>{pokemonId}</p>
+        <img
+          className={css.pokemonImage}
+          src={itemPokemon.sprites?.other['official-artwork'].front_default}
+          alt={card.name}
+        />
+      </header>
 
-      <div className={`bg-${speciePokemon.color?.name} ${css.sub_card}`}>
-        <strong className={css.id_card}>{pokemonId}</strong>
-        <strong className={css.name_card}>{itemPokemon.name}</strong>
-        <h4 className={css.height}>Height: {itemPokemon.height}0 cm</h4>
-        <h4 className={css.weight}>Weight: {itemPokemon.weight} kg</h4>
-        <h4 className={css.habitat}>Habitat: {speciePokemon.habitat?.name}</h4>
+      <section>
+        <div className={css.div_pokemonInfo}>
+          <div className={css.div_name}>
+            <p>Nº {pokemonId}</p>
+            <p className={css.name}>{card.name}</p>
+          </div>
 
-        <div className={css.div_stats}>
-          {itemPokemon?.stats?.map((sta, index) => {
-            return (
-              <h6 key={index} className={css.item_stats}>
-                <span className={css.name}> {sta.stat.name} </span>
-                <progress value={sta.base_stat} max={110}></progress>
-                <span className={css.number}> {sta.base_stat} </span>
-              </h6>
-            )
-          })}
+          <div className={css.div__type_color}>
+            {itemPokemon?.types?.map((type, index) => {
+              return (
+                <div
+                  key={index}
+                  className={`color-${type.type.name} ${css.color_type}`}
+                >
+                  {type.type.name}
+                </div>
+              )
+            })}
+          </div>
         </div>
-
-        <div className={css.div__type_color}>
-          {itemPokemon?.types?.map((type, index) => {
-            return (
-              <h6
-                key={index}
-                className={`color-${type.type.name} ${css.color_type}`}
-              >
-                {type.type.name}
-              </h6>
-            )
-          })}
-        </div>
-
-        <div className={css.div_evolution}>
-          {
-          evolutions.map((evolution, index) => {
-            return (
-              <div key={index} className={css.item_evolution}>
-                <img
-                  src={evolution?.img}
-                  alt={evolution?.name}
-                  className={css.img}
-                />
-                <h6>{evolution?.name}</h6>
-              </div>
-            )
-          })
-
-          }
-</div>
-      </div>
+      </section>
     </div>
   )
 }
