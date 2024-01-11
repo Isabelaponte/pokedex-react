@@ -1,7 +1,7 @@
 .card {
   background-color: #3f3f3f;
   color: #fff;
-  max-width: 255px;
+  max-width: 260px;
   border-radius: 21px;
   margin: 0 auto;
   margin-bottom: 5rem;
@@ -13,6 +13,10 @@
 
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+
+  @media (max-width: 630px) {
+    max-width: 100%;
+  }
 
   .div_pokemonImage {
     display: flex;

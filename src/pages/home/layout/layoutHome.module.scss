@@ -1,3 +1,25 @@
+@mixin breakpoint ($size) {
+
+  @if $size == 712px {
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+
+  @else if $size == 630px {
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+
+  @else if $size == 1300px {
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+
+}
+
 body{
     background-color: var(--main-background-color);
 
@@ -12,6 +34,11 @@ body{
         color: #fff;
     
         > h1 {
+
+          @include breakpoint(1300px) {
+            margin-left: 2.5rem;
+          }
+
           font-size: 2.5rem;
           font-weight: 200;
           text-decoration: underline;
@@ -21,12 +48,17 @@ body{
     
         .div_search_pokemons {
           display: flex;
+          flex-wrap: wrap;
           justify-content: space-between;
           margin: 60px 30px;
     
           .div_input_search {
             display: flex;
             flex-direction: column;
+
+            @include breakpoint(712px) {
+              width: 100%;
+            }
     
             > label {
               padding-bottom: 14px;
@@ -34,6 +66,8 @@ body{
             }
     
             .search {
+              display: flex;
+              justify-content: center;
               > input {
                 padding: 0.5rem;
                 border-radius: 7px;
@@ -42,6 +76,10 @@ body{
                 float: left;
                 border-style: none;
                 box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+                @include breakpoint(712px) {
+                  width: 80%;
+                }
               }
     
               > button {
@@ -62,6 +100,16 @@ body{
           .div_select {
             display: flex;
             flex-direction: column;
+            
+            @include breakpoint(712px) {
+              width: 100%;
+              align-items: center;
+
+              > label {
+                align-self: baseline;
+                margin-top: 2rem;
+              }
+            }
     
             > label {
               padding-bottom: 14px;
@@ -75,6 +123,10 @@ body{
               width: 274px;
               box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
               cursor: pointer;
+
+              @include breakpoint(712px) {
+                width: 90%;
+              }
             }
           }
         }
@@ -88,7 +140,7 @@ body{
         .div_selectSort {
           padding: 50px;
           text-align: end;
-    
+
           > label {
             margin-right: 20px;
             font-size: 1.5rem;
@@ -106,16 +158,25 @@ body{
             box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
             cursor: pointer;
           }
+
+          @include breakpoint(630px) {
+            text-align: center;    
+ 
+             > select {
+               margin-top: 1rem;
+               width: 80%;
+             }
+           }
         }
     
         .card_content {
           width: 1400px;
           max-width: calc(100% - 30px);
           margin: 80px auto;
-    
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
           padding-bottom: 30px;
+          
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
         }
     
         .load_pokemon {
