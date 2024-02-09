@@ -1,10 +1,10 @@
 import React from 'react'
-import LayoutHome from './pages/home/layout/LayoutHome'
+import Home from './pages/home/Home'
 
 function App () {
   return (
     <div>
-      <LayoutHome />
+      <Home />
     </div>
 
   )

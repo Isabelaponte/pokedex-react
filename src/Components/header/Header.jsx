@@ -2,7 +2,7 @@ import React from 'react'
 import * as FaIcons from 'react-icons/fa'
 import css from './header.module.scss'
 
-import logo from '../../../assets/images/pokemon.png'
+import logo from '../../assets/images/pokemon.png'
 
 export default function Header () {
   return (

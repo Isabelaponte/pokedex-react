@@ -1,9 +1,9 @@
 import React from 'react'
 import css from './footer.module.scss'
 
-import iconGitHub from '../../../assets/images/medias/github.png'
-import iconLinkedin from '../../../assets/images/medias/linkedin.png'
-import iconGmail from '../../../assets/images/medias/gmail.png'
+import iconGitHub from '../../assets/images/medias/github.png'
+import iconLinkedin from '../../assets/images/medias/linkedin.png'
+import iconGmail from '../../assets/images/medias/gmail.png'
 
 export default function Footer () {
   return (

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import * as FaIcons from 'react-icons/fa'
 
-import api from '../../../api/apiRest'
-import css from './layoutHome.module.scss'
+import api from '../../api/apiRest'
+import css from './Home.module.scss'
 
-import Header from '../header/Header'
-import Card from '../card/Card'
-import Footer from '../Footer/Footer'
+import Header from '../../Components/header/Header'
+import Card from '../../Components/card/Card'
+import Footer from '../../Components/Footer/Footer'
 
-export default function LayoutHome () {
+export default function Home () {
   const [pokemon, setPokemon] = useState([])
   const [globalPokemon, setGlobalPokemon] = useState([])
   const [page, setPage] = useState(1)

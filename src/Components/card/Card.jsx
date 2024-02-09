@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import css from './card.module.scss'
-import api from '../../../api/apiRest'
+import api from '../../api/apiRest'
 
 export default function Card ({ card }) {
   const [itemPokemon, setItemPokemon] = useState({})
