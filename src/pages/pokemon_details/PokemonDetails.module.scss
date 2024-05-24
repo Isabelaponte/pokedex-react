@@ -1,0 +1,182 @@
+.loader {
+    width: 55px;
+    aspect-ratio: 1;
+    --g1:conic-gradient(from  90deg at 3px  3px ,#0000 90deg,#fff 0);
+    --g2:conic-gradient(from -90deg at 22px 22px,#0000 90deg,#fff 0);
+    background:var(--g1),var(--g1),var(--g1), var(--g2),var(--g2),var(--g2);
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    animation: l7 1.5s infinite;
+  }
+  @keyframes l7 {
+    0%   {background-position:0    0   ,0 100%,100% 100% }
+    25%  {background-position:100% 0   ,0 100%,100% 100% }
+    50%  {background-position:100% 0   ,0 0   ,100% 100% }
+    75%  {background-position:100% 0   ,0 0   ,0    100% }
+    100% {background-position:100% 100%,0 0   ,0    100% }
+  }
+
+.container {
+    // margin: 3.5rem 15rem;
+    margin: 3.5rem auto;
+    max-width: 1000px;
+
+    .pokebolaImage {
+        display: flex;
+        justify-content: end;
+
+        .pokebolaImage {    
+            display: flex;
+            justify-content: end;
+            position: absolute;
+            margin-right: 5rem;
+            width: 260px;
+            opacity: 30%;
+        }
+    }
+
+
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        color: white;
+
+        .pokemonName {
+            display: flex;
+            align-items: center;
+            
+            a {
+                font-size: 2rem;
+    
+                &:hover {   
+                    cursor: pointer;
+                }
+            }
+
+            h1 {
+                padding: 1rem;
+                font-size: 2.5rem;
+                font-weight: 200;
+            }
+        }
+
+        .pokemonId {
+            h2 {
+                font-size: 1.75rem;
+                font-weight: 200;
+            }
+        }
+    }
+
+    .div_hr {
+        display: flex;
+        justify-content: center;
+        hr {
+            margin-bottom: 4rem;
+            border-color:#C2C2C2;
+            box-sizing:border-box;
+            width: 80%;
+        }
+    }
+
+    .div_statsBar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // width: 100%;
+        // max-width: 800px;
+        .stats {
+            padding-bottom: 3rem;
+            color: #535353;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+    }
+
+    .card {
+        width: 100%;
+        background: #FFF;
+        border-radius: 18px;
+        position: relative;
+        margin-top: 8.5rem;
+        
+        .divPokemonImage {
+            display: flex;
+            justify-content: center;
+            
+            img {
+                position: absolute;
+                max-width: 300px;
+                margin-top: -150px;
+            }
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .star {
+                width: 100%;
+                display: flex;
+                justify-content: end;
+                padding: 3rem 3.5rem;
+                font-size: 50px;
+                color: #000;
+            }
+
+            h3 {
+                color: #535353;
+                font-size: 3rem;
+                font-weight: 900;
+                padding: 1rem;
+            }
+
+            .types {
+                display: flex;
+                gap: 3rem;
+                margin: 5rem 0 1rem;
+            }
+
+            .typesName {
+                margin-bottom: 5rem;
+                color: #939393;
+                font-weight: 600;
+                font-size: 1.75rem;
+                text-transform: capitalize;
+                letter-spacing: 0.2rem;
+            }
+
+            .weightHeight {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 2rem 8rem;
+                font-weight: 800;
+                font-size: 2.5rem;
+                color: #535353;
+                
+                margin-bottom: 1rem;
+
+                > div {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    
+                    .label {
+                        margin-top: 1rem;
+                        color: #939393;
+                        font-weight: 600;
+                        font-size: 2rem;  
+                    }
+
+                }
+
+            }
+
+        }
+        
+        
+    }
+}
