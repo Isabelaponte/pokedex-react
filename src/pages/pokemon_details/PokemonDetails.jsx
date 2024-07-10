@@ -6,9 +6,9 @@ import * as FaIcons from 'react-icons/fa6'
 import pokebolaImage from '../../assets/images/pokebola.png'
 import bulbasaur from '../../assets/images/001.png'
 import css from './PokemonDetails.module.scss'
-import SelectInput from '../../Components/SelectInput/SelectInput'
-import TypeIcons from '../../Components/TypeIcon/TypeIcons'
-import StatsBar from '../../Components/StatsBar/StatsBar'
+import SelectInput from '../../Components/selectInput/SelectInput'
+import TypeIcons from '../../Components/typeIcon/TypeIcons'
+import StatsBar from '../../Components/statsBar/StatsBar'
 
 import api from '../../api/apiRest'
 
