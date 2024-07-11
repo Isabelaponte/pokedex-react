@@ -1,0 +1,51 @@
+@mixin breakpoint ($size) {
+  @if $size == 712px {
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+
+  @else if $size == 630px {
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+
+  @else if $size == 1300px {
+    @media (max-width: $size) {
+      @content;
+    }
+  }
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+
+  > input {
+    padding: 0.5rem;
+    border-radius: 7px;
+    width: 274px;
+    font-size: 1rem;
+    float: left;
+    border-style: none;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    @include breakpoint(712px) {
+      width: 80%;
+    }
+  }
+
+  > button {
+    width: 45px;
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: #47bf33;
+    color: white;
+    cursor: pointer;
+    border-radius: 7px;
+    border-style: none;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+}

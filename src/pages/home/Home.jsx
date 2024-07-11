@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import * as FaIcons from "react-icons/fa";
 
 import api from "../../api/apiRest";
 import css from "./Home.module.scss";
@@ -8,6 +7,7 @@ import Header from "../../Components/header/Header";
 import Card from "../../Components/card/Card";
 import Footer from "../../Components/Footer/Footer";
 import LoadingPage from "../../Components/loading/LoadingPage";
+import SearchBar from "./components/searchBar/SearchBar";
 
 export default function Home() {
   const [pokemon, setPokemon] = useState([]);
@@ -54,14 +54,14 @@ export default function Home() {
     setPage(page + 1);
   };
 
-  const getSearch = (text) => {
+  const handleSearch = (text) => {
     setSearch(text.toLowerCase());
     setPage(1);
   };
 
   return (
     <div>
-      <Header getSearch={getSearch} />
+      <Header />
 
       <main>
         <header className={css.header_main}>
@@ -70,24 +70,7 @@ export default function Home() {
           <div className={css.div_search_pokemons}>
             <div className={css.div_input_search}>
               <label htmlFor="search">Name</label>
-
-              <form
-                className={css.search}
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  getSearch(e.target.search.value);
-                }}
-              >
-                <input
-                  placeholder="Search..."
-                  type="text"
-                  name="search"
-                  id="search"
-                />
-                <button type="submit">
-                  <FaIcons.FaSearch className={css.icon_search} />
-                </button>
-              </form>
+              <SearchBar getSearch={handleSearch} />
             </div>
 
             <div className={css.div_select}>

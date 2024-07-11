@@ -1,5 +1,4 @@
 @mixin breakpoint ($size) {
-
   @if $size == 712px {
     @media (max-width: $size) {
       @content;
@@ -17,192 +16,155 @@
       @content;
     }
   }
-
 }
 
-body{
-    background-color: var(--main-background-color);
+body {
+  background-color: var(--main-background-color);
 
-    main {
-      padding-bottom: 70px;
-      
-      margin: 0 auto;
-      max-width: 1280px;
-      
-      .header_main {
-        padding: 55px 0;
-        color: #fff;
-    
-        > h1 {
+  main {
+    padding-bottom: 70px;
+    margin: 0 auto;
+    max-width: 1280px;
 
-          @include breakpoint(1300px) {
-            margin-left: 2.5rem;
-          }
+    .header_main {
+      padding: 55px 0;
+      color: #fff;
 
-          font-size: 2.5rem;
-          font-weight: 200;
-          text-decoration: underline;
-          text-decoration-thickness: 0.1rem;
-          text-underline-position: under;
+      > h1 {
+        @include breakpoint(1300px) {
+          margin-left: 2.5rem;
         }
-    
-        .div_search_pokemons {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          margin: 60px 30px;
-    
-          .div_input_search {
-            display: flex;
-            flex-direction: column;
 
-            @include breakpoint(712px) {
-              width: 100%;
-            }
-    
-            > label {
-              padding-bottom: 14px;
-              font-size: 1.5rem;
-            }
-    
-            .search {
-              display: flex;
-              justify-content: center;
-              > input {
-                padding: 0.5rem;
-                border-radius: 7px;
-                width: 274px;
-                font-size: 1rem;
-                float: left;
-                border-style: none;
-                box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-                @include breakpoint(712px) {
-                  width: 80%;
-                }
-              }
-    
-              > button {
-                width: 45px;
-                margin-left: 0.5rem;
-                padding: 0.5rem;
-                font-size: 1rem;
-                background-color: #47bf33;
-                color: white;
-                cursor: pointer;
-                border-radius: 7px;
-                border-style: none;
-                box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-              }
-            }
-          }
-    
-          .div_select {
-            display: flex;
-            flex-direction: column;
-            
-            @include breakpoint(712px) {
-              width: 100%;
-              align-items: center;
-
-              > label {
-                align-self: baseline;
-                margin-top: 2rem;
-              }
-            }
-    
-            > label {
-              padding-bottom: 14px;
-              font-size: 1.5rem;
-            }
-    
-            > select {
-              padding: 0.5rem;
-              font-size: 1rem;
-              border-radius: 7px;
-              width: 274px;
-              box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-              cursor: pointer;
-
-              @include breakpoint(712px) {
-                width: 90%;
-              }
-            }
-          }
-        }
+        font-size: 2.5rem;
+        font-weight: 200;
+        text-decoration: underline;
+        text-decoration-thickness: 0.1rem;
+        text-underline-position: under;
       }
-    
-      .section_pokemonList {
-        margin: 0 auto;
-        border-radius: 35px;
-        background-color: #fff;
-    
-        .div_selectSort {
-          padding: 50px;
-          text-align: end;
+
+      .div_search_pokemons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 60px 30px;
+
+        .div_input_search {
+          display: flex;
+          flex-direction: column;
+
+          @include breakpoint(712px) {
+            width: 100%;
+          }
 
           > label {
-            margin-right: 20px;
+            padding-bottom: 14px;
             font-size: 1.5rem;
-            color: #838383;
           }
-    
-          > select {
-            padding: 0.5rem;
-            width: 274px;
-            border-radius: 7px;
-            border-style: none;
-            font-size: 1.25rem;
-            background-color: var(--main-background-color);
-            color: #fff;
-            box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            cursor: pointer;
+        }
+
+        .div_select {
+          display: flex;
+          flex-direction: column;
+
+          @include breakpoint(712px) {
+            width: 100%;
+            align-items: center;
+
+            > label {
+              align-self: baseline;
+              margin-top: 2rem;
+            }
           }
 
-          @include breakpoint(630px) {
-            text-align: center;    
- 
-             > select {
-               margin-top: 1rem;
-               width: 80%;
-             }
-           }
-        }
-    
-        .card_content {
-          width: 1400px;
-          max-width: calc(100% - 30px);
-          margin: 80px auto;
-          padding-bottom: 30px;
-          
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-        }
-    
-        .load_pokemon {
-          padding-bottom: 60px;
-          text-align: center;
-    
-          > button {
-            background-color: #47bf33;
-            padding: 0.75rem;
-            color: #fff;
+          > label {
+            padding-bottom: 14px;
             font-size: 1.5rem;
-            font-weight: 400;
-            border: none;
-            border-radius: 8px;
-            transition: 0.3s;
+          }
+
+          > select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 7px;
+            width: 274px;
             box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            cursor:pointer;     
-            
-            &:hover {
-                transition: 0.3s;
-                background-color: #41d927;
+            cursor: pointer;
+
+            @include breakpoint(712px) {
+              width: 90%;
             }
           }
         }
       }
     }
-    
-}
 
+    .section_pokemonList {
+      margin: 0 auto;
+      border-radius: 35px;
+      background-color: #fff;
+
+      .div_selectSort {
+        padding: 50px;
+        text-align: end;
+
+        > label {
+          margin-right: 20px;
+          font-size: 1.5rem;
+          color: #838383;
+        }
+
+        > select {
+          padding: 0.5rem;
+          width: 274px;
+          border-radius: 7px;
+          border-style: none;
+          font-size: 1.25rem;
+          background-color: var(--main-background-color);
+          color: #fff;
+          box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+          cursor: pointer;
+        }
+
+        @include breakpoint(630px) {
+          text-align: center;
+
+          > select {
+            margin-top: 1rem;
+            width: 80%;
+          }
+        }
+      }
+
+      .card_content {
+        width: 1400px;
+        max-width: calc(100% - 30px);
+        margin: 80px auto;
+        padding-bottom: 30px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+
+      .load_pokemon {
+        padding-bottom: 60px;
+        text-align: center;
+
+        > button {
+          background-color: #47bf33;
+          padding: 0.75rem;
+          color: #fff;
+          font-size: 1.5rem;
+          font-weight: 400;
+          border: none;
+          border-radius: 8px;
+          transition: 0.3s;
+          box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+          cursor: pointer;
+
+          &:hover {
+            transition: 0.3s;
+            background-color: #41d927;
+          }
+        }
+      }
+    }
+  }
+}
