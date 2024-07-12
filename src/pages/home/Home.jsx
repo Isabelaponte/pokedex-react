@@ -8,6 +8,7 @@ import Card from "../../Components/card/Card";
 import Footer from "../../Components/Footer/Footer";
 import LoadingPage from "../../Components/loading/LoadingPage";
 import SearchBar from "./components/searchBar/SearchBar";
+import SelectInput from "../../Components/selectInput/SelectInput";
 
 export default function Home() {
   const [pokemon, setPokemon] = useState([]);
@@ -21,6 +22,7 @@ export default function Home() {
       ? globalPokemons?.filter((pokemon) => pokemon?.name?.includes(search))
       : pokemon;
 
+
   useEffect(() => {
     getData();
     getAllPokemons();
@@ -28,7 +30,7 @@ export default function Home() {
 
   const getData = async () => {
     setLoading(true);
-    const limit = 16;
+    const limit = 12;
     const offset = (page - 1) * limit;
     const response = await api.get(`/pokemon/?offset=${offset}&limit=${limit}`);
 
@@ -72,29 +74,11 @@ export default function Home() {
               <label htmlFor="search">Name</label>
               <SearchBar getSearch={handleSearch} />
             </div>
-
-            <div className={css.div_select}>
-              <label htmlFor="select_type">Type</label>
-
-              <select name="select_type" id="select_type">
-                <option value="Bug">Bug</option>
-                <option value="Fire">Fire</option>
-                <option value="AA">BuAAg</option>
-              </select>
-            </div>
           </div>
         </header>
 
         <section className={css.section_pokemonList}>
-          <div className={css.div_selectSort}>
-            <label htmlFor="select_sortPokemon">Sort by</label>
-            <select name="select_sortPokemon" id="select_sortPokemon">
-              <option value="lowestFirst">Lowest Number (First)</option>
-              <option value="highestFirst">Highest Number (First)</option>
-              <option value="A-Z">A-Z</option>
-              <option value="Z-A">Z-A</option>
-            </select>
-          </div>
+          
           {loading ? (
             <LoadingPage />
           ) : (
